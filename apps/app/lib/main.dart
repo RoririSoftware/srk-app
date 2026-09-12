@@ -25,9 +25,17 @@ class SrkApp extends StatelessWidget {
           elevation: 0,
           centerTitle: false,
           iconTheme: IconThemeData(color: ink),
-          titleTextStyle: TextStyle(color: ink, fontSize: 18, fontWeight: FontWeight.w800),
+          titleTextStyle: TextStyle(
+            color: ink,
+            fontSize: 18,
+            fontWeight: FontWeight.w800,
+          ),
         ),
-        dividerTheme: const DividerThemeData(color: Color(0xFFD3DBE4), thickness: 1, space: 1),
+        dividerTheme: const DividerThemeData(
+          color: Color(0xFFD3DBE4),
+          thickness: 1,
+          space: 1,
+        ),
         textTheme: const TextTheme(
           titleLarge: TextStyle(color: ink, fontWeight: FontWeight.w800),
           titleMedium: TextStyle(color: ink, fontWeight: FontWeight.w700),
