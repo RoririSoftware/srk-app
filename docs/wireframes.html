@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKR Trader - Wireframes</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1c1b18; --ink-2:#56534c; --ink-3:#8b877e;
+  --line:#e5e1d8; --line-2:#d0cbbf; --accent:#2f6b46; --accent-soft:#eaf2ec;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --bg:#14150f; --panel:#1b1c16; --ink:#ecebe4; --ink-2:#a8a49a; --ink-3:#7a766c;
+  --line:#2c2d25; --line-2:#414236; --accent:#7fb894; --accent-soft:#1d2a22;
+}}
+:root[data-theme=dark]{
+  --bg:#14150f; --panel:#1b1c16; --ink:#ecebe4; --ink-2:#a8a49a; --ink-3:#7a766c;
+  --line:#2c2d25; --line-2:#414236; --accent:#7fb894; --accent-soft:#1d2a22;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin:0 auto;padding:0 28px}
+a{color:var(--accent)}
+
+.backbar{border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}
+.backbar .wrap{display:flex;align-items:center;justify-content:space-between;height:54px}
+.back{display:inline-flex;align-items:center;gap:8px;font:12px var(--mono);letter-spacing:.04em;
+  text-decoration:none;color:var(--ink-3);transition:color .15s}
+.back:hover{color:var(--ink)}
+.where{font:11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--line-2)}
+
+header{padding:64px 0 8px}
+h1{font-size:clamp(32px,5vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 16px;font-weight:600}
+.lede{font-size:18px;line-height:1.6;color:var(--ink-2);max-width:620px;margin:0 0 28px}
+.legend{display:flex;flex-wrap:wrap;gap:18px;padding:16px 0 0;border-top:1px solid var(--line);
+  font:11px var(--mono);letter-spacing:.04em;color:var(--ink-3)}
+.legend span{display:flex;align-items:center;gap:7px}
+.swatch{width:22px;height:12px;border:1.5px dashed var(--line-2);border-radius:3px}
+.swatch.fill{background:var(--line);border:1.5px solid var(--line)}
+.swatch.bar{border:1px solid var(--line-2);border-style:solid}
+
+.flowbox{margin:44px 0 0}
+.flowbox h2{font-size:13px;font-family:var(--mono);font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 14px}
+.flow{font:12px/2 var(--mono);color:var(--ink-2);background:var(--panel);border:1px solid var(--line);
+  border-radius:12px;padding:22px 24px;overflow-x:auto;white-space:pre}
+
+.group{margin:76px 0 0}
+.group-head{display:flex;align-items:baseline;gap:14px;padding-bottom:18px;margin-bottom:34px;
+  border-bottom:1px solid var(--line);flex-wrap:wrap}
+.group-head .k{font:11px var(--mono);letter-spacing:.14em;color:var(--accent)}
+.group-head h2{font-size:24px;letter-spacing:-.015em;font-weight:600;margin:0}
+.group-head .n{margin-left:auto;font:11px var(--mono);color:var(--ink-3);letter-spacing:.08em}
+.group>p.intro{margin:-18px 0 30px;font-size:14.5px;color:var(--ink-2);max-width:640px}
+
+.grid{display:grid;gap:38px 30px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.grid.wide{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+.idx{font:11px var(--mono);letter-spacing:.1em;color:var(--ink-3);margin-bottom:10px}
+
+.phone{border:1px solid var(--line-2);border-radius:22px;padding:12px 10px;background:var(--panel)}
+.phone .notch{width:42px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 10px}
+.desk{border:1px solid var(--line-2);border-radius:10px;background:var(--panel);overflow:hidden;padding-bottom:10px}
+.desk .chrome{display:flex;gap:5px;padding:9px 12px;border-bottom:1px solid var(--line);margin-bottom:10px}
+.desk .chrome i{width:7px;height:7px;border-radius:50%;background:var(--line);display:block}
+.desk .pad{padding:0 10px}
+
+.scr{display:flex;flex-direction:column;gap:7px;height:322px;overflow:hidden}
+.scr.s{height:240px}
+.bar{border:1px solid var(--line-2);border-radius:5px;padding:6px 8px;font:10px var(--mono);
+  color:var(--ink-3);display:flex;justify-content:space-between;gap:8px;flex:0 0 auto}
+.b{border:1.5px dashed var(--line-2);border-radius:5px;padding:8px;font:10px/1.5 var(--mono);
+  color:var(--ink-3);flex:0 0 auto}
+.b.f{flex:1 1 auto;display:flex;align-items:center;justify-content:center;text-align:center}
+.b.col{flex:1 1 auto;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start}
+.b.cta{background:var(--line);border:1.5px solid var(--line);color:var(--ink-2);text-align:center;letter-spacing:.06em}
+.steps{display:flex;gap:4px;align-items:center;font:9px var(--mono);color:var(--ink-3);
+  border:1px solid var(--line-2);border-radius:5px;padding:6px 7px;justify-content:space-between;flex:0 0 auto}
+.ln{height:6px;border-radius:3px;background:var(--line);margin:6px 0}
+.ln.s{width:52%} .ln.m{width:74%} .ln.l{width:93%}
+.row{display:flex;gap:7px}.row>*{flex:1}
+
+.cap{margin:14px 0 0}
+.cap b{display:block;font-size:14.5px;color:var(--ink);font-weight:600;margin-bottom:5px;letter-spacing:-.005em}
+.cap p{margin:0;font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+.cap .flag{display:inline-block;margin-top:8px;font:10px var(--mono);letter-spacing:.06em;
+  color:var(--accent);background:var(--accent-soft);padding:3px 8px;border-radius:20px}
+
+footer{margin-top:96px;border-top:1px solid var(--line);padding:28px 0 64px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  font:12px var(--mono);color:var(--ink-3);letter-spacing:.03em}
+</style>
+</head>
+<body>
+
+<div class="backbar"><div class="wrap">
+  <a class="back" href="index.html"><span>&#8592;</span> Back to the plan</a>
+  <span class="where">Wireframes</span>
+</div></div>
+
+<div class="wrap">
+
+<header>
+  <h1>Screen wireframes</h1>
+  <p class="lede">Twenty-two screens, drawn as boxes only. These show what exists and what sits where - not colours, not wording, not how the finished app will look.</p>
+  <div class="legend">
+    <span><i class="swatch"></i> a block of content</span>
+    <span><i class="swatch bar"></i> header or nav</span>
+    <span><i class="swatch fill"></i> the main action</span>
+    <span>Dotted line = placeholder, not final</span>
+  </div>
+</header>
+
+<div class="flowbox">
+  <h2>The flow, end to end</h2>
+  <div class="flow">WHATSAPP ─┐
+          ├─▶ ATTACHMENTS ─▶ READ &amp; CONFIRM ─▶ THE LEAD JOURNEY ─▶ CHECK REPORT ─▶ SUBMIT
+APP ──────┘                  Aadhaar · Patta      basic · land           9 checks
+                             certificate · RC     product · delivery     one verdict
+                                                                               │
+   ┌───────────────────────────────────────────────────────────────────────────┘
+   ▼
+APPROVAL ─▶ DEPARTMENT ─▶ STOCK ─▶ DELIVERY ─▶ PROOF ─▶ WARRANTY &amp; SERVICE ─▶ ACCOUNTS ─▶ CLOSED
+Coordinator   Dept Coord   Store    Delivery                                    Accounts</div>
+</div>
+
+<!-- ===== A ===== -->
+<div class="group">
+  <div class="group-head"><span class="k">A</span><h2>Getting in</h2><span class="n">3 screens</span></div>
+  <p class="intro">Two doors into the same record. A document sent over WhatsApp and a document photographed in the app end up in exactly the same place.</p>
+
+  <div class="grid">
+
+    <div>
+      <div class="idx">01</div>
+      <div class="phone"><div class="notch"></div><div class="scr">
+        <div class="bar"><span>SKR Trader</span><span>chat</span></div>
+        <div class="b" style="margin-left:28%">photo sent &#9654;</div>
+        <div class="b col">READ IT AS: AADHAAR
+          <div class="ln l"></div><div class="ln m"></div>
+          <div class="ln s"></div>
+          <div style="margin-top:8px">still needed:<br>patta · passbook</div></div>
+        <div class="b">reply: type to correct</div>
+      </div></div>
+      <div class="cap"><b>WhatsApp intake</b><p>Send a photograph to the SKR number. The system recognises the document, files it against the right farmer, and answers with what it captured and what is still missing.</p>
+      <span class="flag">scope decision - question 09</span></div>
+    </div>
+
+    <div>
+      <div class="idx">02</div>
+      <div class="phone"><div class="notch"></div><div class="scr">
+        <div class="b f">LOGO</div>
+        <div class="b">mobile / user id</div>
+        <div class="b">password</div>
+        <div class="b cta">SIGN IN</div>
+        <div class="b" style="text-align:center">forgot password</div>
+      </div></div>
+      <div class="cap"><b>Login</b><p>One login for everyone. The role on the account decides which home screen opens next - there is no role picker to get wrong.</p></div>
+    </div>
+
+    <div>
+      <div class="idx">03</div>
+      <div class="phone"><div class="notch"></div><div class="scr">
+        <div class="bar"><span>SKR Trader</span><span>&#9673;</span></div>
+        <div class="b">staff name · role · branch</div>
+        <div class="row"><div class="b">new leads<div class="ln s"></div></div><div class="b">follow ups<div class="ln s"></div></div></div>
+        <div class="row"><div class="b">pending docs<div class="ln s"></div></div><div class="b">converted<div class="ln s"></div></div></div>
+        <div class="b cta">+ ADD NEW LEAD</div>
+        <div class="b">leads · attachments · reports<br>products · service · profile</div>
+      </div></div>
+      <div class="cap"><b>Home</b><p>Four counts that matter, one big action, and a grid of everything else. Each role gets a different version - Store sees stock, Delivery sees a run sheet.</p></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== B ===== -->
+<div class="group">
+  <div class="group-head"><span class="k">B</span><h2>The lead journey</h2><span class="n">phone · 7 screens</span></div>
+  <p class="intro">Documents first, then the details those documents could not supply. A draft saves at every step, so a dropped signal never loses the work.</p>
+
+  <div class="grid">
+
+    <div>
+      <div class="idx">04</div>
+      <div class="phone"><div class="notch"></div><div class="scr">
+        <div class="bar"><span>&#9664; Attachments</span><span>1 / 8</span></div>
+        <div class="b">farmer photo <span style="float:right">upload</span></div>
+        <div class="b">aadhaar (read) <span style="float:right">upload</span></div>
+        <div class="b">patta / chitta (read) <span style="float:right">upload</span></div>
+        <div class="b">community cert (if SC) <span style="float:right">upload</span></div>
+        <div class="b">adangal · RC book · passbook</div>
+        <div class="b">farmer registration · other</div>
+        <div class="b cta">NEXT</div>
+      </div></div>
+      <div class="cap"><b>Attachments</b><p>Nine document slots. The ones marked as read are put through OCR the moment they are uploaded; the rest are simply stored against the file.</p></div>
+    </div>
+
+    <div>
+      <div class="idx">05</div>
+      <div class="phone"><div class="notch"></div><div class="scr">
+        <div class="bar"><span>&#9664; Basic information</span><span>2 / 8</span></div>
+        <div class="b">farmer name *<div class="ln m"></div></div>
+        <div class="b">S/O · W/O &nbsp;·&nbsp; mobile *</div>
+        <div class="b">aadhaar number<div class="ln m"></div></div>
+        <div class="b">address · gender · date of birth</div>
+        <div class="b col">COMMUNITY (auto detected)<div class="ln s"></div>
+          <div style="margin-top:6px">no certificate = General</div></div>
+        <div class="b cta">NEXT</div>
+      </div></div>
+      <div class="cap"><b>Basic information</b><p>Mostly filled in already from the Aadhaar reading. Community is taken from the community certificate if one was attached, and defaults to General if not.</p></div>
+    </div>
+
+    <div>
+      <div class="idx">06</div>
+      <div class="phone"><div class="notch"></div><div class="scr">
+        <div class="bar"><span>&#9664; Land information</span><span>3 / 8</span></div>
+        <div class="b">state · district * · taluk * · village *</div>
+        <div class="b">patta number<div class="ln s"></div></div>
+        <div class="b">survey number(s)<div class="ln m"></div></div>
+        <div class="b">total extent &nbsp;·&nbsp; unit &nbsp;·&nbsp; type of land</div>
+        <div class="b">use GPS location<span style="float:right">capture</span></div>
+        <div class="b cta">NEXT</div>
+      </div></div>
+      <div class="cap"><b>Land information</b><p>Pre-filled from the Patta reading. A GPS capture records where the farm actually is, which also gives the delivery team something better than an address.</p></div>
+    </div>
+
+    <div>
+      <div class="idx">07</div>
+      <div class="phone"><div class="notch"></div><div class="scr">
+        <div class="bar"><span>&#9664; Product information</span><span>4 / 8</span></div>
+        <div class="b">category · product · brand · model</div>
+        <div class="b">price<div class="ln s"></div></div>
+        <div class="b">scheme: SUBSIDY | NON-SUBSIDY</div>
+        <div class="b">subsidy % &nbsp;·&nbsp; farmer contribution</div>
+        <div class="b col">ELIGIBILITY
+          <div style="margin-top:6px">approved for this department<br>and this category?</div></div>
+        <div class="b cta">NEXT</div>
+      </div></div>
+      <div class="cap"><b>Product and scheme</b><p>Choosing the product decides the department. Only brands approved for that department and category are offered, and the contribution is worked out from the subsidy slab.</p>
+      <span class="flag">needs the brand lists - question 20</span></div>
+    </div>
+
+    <div>
+      <div class="idx">08</div>
+      <div class="phone"><div class="notch"></div><div class="scr">
+        <div class="bar"><span>&#9664; Delivery information</span><span>5 / 8</span></div>
+        <div class="b">order number &nbsp;·&nbsp; order date</div>
+        <div class="b">quantity &nbsp;·&nbsp; delivery date</div>
+        <div class="b">delivery status<div class="ln s"></div></div>
+        <div class="b">delivery address<div class="ln l"></div></div>
+        <div class="b">transport mode &nbsp;·&nbsp; driver contact</div>
+        <div class="b cta">NEXT</div>
+      </div></div>
+      <div class="cap"><b>Delivery information</b><p>Order and delivery details captured at the point of sale, then handed to the delivery team rather than re-typed by them.</p></div>
+    </div>
+
+    <div>
+      <div class="idx">09</div>
+      <div class="phone"><div class="notch"></div><div class="scr">
+        <div class="bar"><span>&#9664; Warranty &amp; service</span><span>6 / 8</span></div>
+        <div class="b">warranty period<div class="ln s"></div></div>
+        <div class="b">start date &nbsp;·&nbsp; end date</div>
+        <div class="b">warranty status<div class="ln s"></div></div>
+        <div class="b">service type &nbsp;·&nbsp; service date</div>
+        <div class="b">engineer &nbsp;·&nbsp; next service due</div>
+        <div class="b cta">NEXT</div>
+      </div></div>
+      <div class="cap"><b>Warranty and service</b><p>The warranty clock starts from the delivery date automatically. Service visits and the next due date are tracked on the same record, long after the sale.</p></div>
+    </div>
+
+    <div>
+      <div class="idx">10</div>
+      <div class="phone"><div class="notch"></div><div class="scr">
+        <div class="bar"><span>&#9664; Lead status</span><span>in progress</span></div>
+        <div class="b">lead id &nbsp;·&nbsp; farmer &nbsp;·&nbsp; mobile</div>
+        <div class="b col">&#10003; created<br>&#10003; documents uploaded<br>&#10003; documents verified<br>&#10003; approved · submitted<br>&#9675; stock · delivery<br>&#9675; warranty · service · closed</div>
+        <div class="row"><div class="b" style="text-align:center">ADD NOTE</div><div class="b cta">UPDATE STATUS</div></div>
+      </div></div>
+      <div class="cap"><b>Lead status</b><p>The whole journey on one screen, with a date and a name against every stage that has happened, and everything still pending shown plainly.</p></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== C ===== -->
+<div class="group">
+  <div class="group-head"><span class="k">C</span><h2>Reading and checking</h2><span class="n">4 screens</span></div>
+  <p class="intro">Each document follows the same four steps - upload, extract, compare, save - and a person confirms every reading before it is kept.</p>
+
+  <div class="grid wide">
+
+    <div>
+      <div class="idx">11</div>
+      <div class="phone"><div class="notch"></div><div class="scr">
+        <div class="bar"><span>&#9664; Aadhaar</span><span>?</span></div>
+        <div class="steps"><span>1 upload</span><span>2 extract</span><span>3 verify</span><span>4 save</span></div>
+        <div class="b f">SCAN OF THE CARD<br>tap to zoom</div>
+        <div class="b">name · father/spouse · DOB · gender</div>
+        <div class="b">aadhaar number &nbsp;·&nbsp; address</div>
+        <div class="b cta">SAVE &amp; CONTINUE</div>
+      </div></div>
+      <div class="cap"><b>Aadhaar reading</b><p>The first document and the one that seeds everything. What it reads becomes the farmer profile, so nobody types a name twice.</p>
+      <span class="flag">storage rule - question 27</span></div>
+    </div>
+
+    <div>
+      <div class="idx">12</div>
+      <div class="phone"><div class="notch"></div><div class="scr">
+        <div class="bar"><span>&#9664; Patta</span><span>?</span></div>
+        <div class="steps"><span>1 upload</span><span>2 extract</span><span>3 verify</span><span>4 save</span></div>
+        <div class="b f">SCAN OF THE PATTA<br>change photo</div>
+        <div class="b">patta no · survey no · sub division</div>
+        <div class="b">land type · extent · unit · water rate</div>
+        <div class="b">district · taluk · village · remarks</div>
+        <div class="row"><div class="b" style="text-align:center">RETAKE</div><div class="b cta">SAVE</div></div>
+      </div></div>
+      <div class="cap"><b>Patta reading</b><p>Reads the Tamil land record including land type and hectare-are extent, and converts it to acres. Every field stays editable before saving.</p>
+      <span class="flag">working today</span></div>
+    </div>
+
+    <div>
+      <div class="idx">13</div>
+      <div class="desk"><div class="chrome"><i></i><i></i><i></i></div><div class="pad"><div class="scr">
+        <div class="bar"><span>Certificate</span><span></span></div>
+        <div class="steps"><span>1 upload</span><span>2 extract</span><span>3 compare</span><span>4 result</span></div>
+        <div class="row"><div class="b f">SCAN</div><div class="b col">cert no · date<div class="ln m"></div><div class="ln s"></div>name · village</div></div>
+        <div class="b">land rows from the certificate (3)</div>
+        <div class="b col">COMPARE WITH PATTA
+          <div style="margin-top:6px">field &nbsp; certificate &nbsp; patta &nbsp; status</div><div class="ln l"></div><div class="ln l"></div></div>
+        <div class="b cta">SAVE &amp; CONTINUE</div>
+      </div></div></div>
+      <div class="cap"><b>Certificate reading and comparison</b><p>Reads the Small &amp; Marginal Farmer certificate, including every land row, and sets it side by side against the Patta already on file. Row by row: certificate value, Patta value, verdict.</p>
+      <span class="flag">working today</span></div>
+    </div>
+
+    <div>
+      <div class="idx">14</div>
+      <div class="desk"><div class="chrome"><i></i><i></i><i></i></div><div class="pad"><div class="scr">
+        <div class="bar"><span>Before submitting</span><span>8 of 9 clear</span></div>
+        <div class="b">name across documents &nbsp;&#10003;</div>
+        <div class="b">village spelling &nbsp;&#10007; two versions found</div>
+        <div class="b">survey &amp; patta numbers &nbsp;&#10003;</div>
+        <div class="b">extent totals · certificate validity &nbsp;&#10003;</div>
+        <div class="b">vehicle age · category · eligibility &nbsp;&#10003;</div>
+        <div class="b">documents required: 7 of 8 attached</div>
+        <div class="row"><div class="b" style="text-align:center">PDF</div><div class="b cta">FIX &amp; RESUBMIT</div></div>
+      </div></div></div>
+      <div class="cap"><b>Pre-submission report</b><p>The nine checks in one verdict. Anything that would come back from the department is named here instead, with the exact field and the two values that disagree.</p>
+      <span class="flag">the screen that pays for the system</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== D ===== -->
+<div class="group">
+  <div class="group-head"><span class="k">D</span><h2>Office screens</h2><span class="n">tablet or desktop · 8 screens</span></div>
+  <p class="intro">Where an approved file becomes a submitted application, an allocated machine, a delivery, and finally a closed account.</p>
+
+  <div class="grid wide">
+
+    <div>
+      <div class="idx">15</div>
+      <div class="desk"><div class="chrome"><i></i><i></i><i></i></div><div class="pad"><div class="scr s">
+        <div class="bar"><span>Approval queue</span><span>14 waiting</span></div>
+        <div class="b">filter: department · branch · staff · result</div>
+        <div class="row"><div class="b">file<div class="ln l"></div></div><div class="b">checks<div class="ln s"></div></div><div class="b" style="text-align:center">&#10003; / &#10007;</div></div>
+        <div class="row"><div class="b">file<div class="ln l"></div></div><div class="b">checks<div class="ln s"></div></div><div class="b" style="text-align:center">&#10003; / &#10007;</div></div>
+        <div class="b cta">APPROVE SELECTED</div>
+      </div></div></div>
+      <div class="cap"><b>Coordinator approval queue</b><p>Files that passed the checks, waiting on a human decision. Approve, or reject with a reason that goes straight back to the staff member who raised it.</p></div>
+    </div>
+
+    <div>
+      <div class="idx">16</div>
+      <div class="desk"><div class="chrome"><i></i><i></i><i></i></div><div class="pad"><div class="scr s">
+        <div class="bar"><span>AED submissions</span><span>lot 06</span></div>
+        <div class="b">department: AED &#9662; &nbsp; scheme year &#9662;</div>
+        <div class="b">&#9745; file &nbsp; &#9745; file &nbsp; &#9744; file &nbsp; &#9744; file</div>
+        <div class="b">department reference<div class="ln m"></div></div>
+        <div class="b">status: submitted · queried · sanctioned</div>
+        <div class="b cta">CREATE LOT</div>
+      </div></div></div>
+      <div class="cap"><b>Department submission</b><p>Approved files grouped into a lot and filed with AED, Agri or Horti, with the reference number and department status recorded against each one.</p>
+      <span class="flag">shape depends on questions 14-19</span></div>
+    </div>
+
+    <div>
+      <div class="idx">17</div>
+      <div class="desk"><div class="chrome"><i></i><i></i><i></i></div><div class="pad"><div class="scr s">
+        <div class="bar"><span>Store · branch</span><span>32 in stock</span></div>
+        <div class="row"><div class="b">product<div class="ln l"></div></div><div class="b">in<div class="ln s"></div></div><div class="b">free<div class="ln s"></div></div></div>
+        <div class="b">allocate &#8594; serial / chassis / engine</div>
+        <div class="b cta">MARK READY FOR DISPATCH</div>
+      </div></div></div>
+      <div class="cap"><b>Stock and allocation</b><p>Stock by product and branch, and the act of tying one physical machine, by its serial number, to one farmer's file.</p></div>
+    </div>
+
+    <div>
+      <div class="idx">18</div>
+      <div class="desk"><div class="chrome"><i></i><i></i><i></i></div><div class="pad"><div class="scr s">
+        <div class="bar"><span>Run sheet · today</span><span>6 drops</span></div>
+        <div class="row"><div class="b">village<div class="ln m"></div></div><div class="b">machine<div class="ln m"></div></div></div>
+        <div class="b">vehicle &#9662; &nbsp; driver &#9662;</div>
+        <div class="b cta">MARK DISPATCHED</div>
+      </div></div></div>
+      <div class="cap"><b>Delivery run sheet</b><p>Today's deliveries grouped by route, using the GPS point captured at the farm rather than a written address.</p></div>
+    </div>
+
+    <div>
+      <div class="idx">19</div>
+      <div class="desk"><div class="chrome"><i></i><i></i><i></i></div><div class="pad"><div class="scr s">
+        <div class="bar"><span>Proof of delivery</span><span></span></div>
+        <div class="b f">PHOTO AT THE FARMER'S SITE</div>
+        <div class="b">signature &nbsp;·&nbsp; date &nbsp;·&nbsp; location</div>
+        <div class="b cta">CONFIRM DELIVERED</div>
+      </div></div></div>
+      <div class="cap"><b>Proof of delivery</b><p>A photo at the site and a signature. This timestamp starts the warranty clock and unlocks the subsidy claim.</p></div>
+    </div>
+
+    <div>
+      <div class="idx">20</div>
+      <div class="desk"><div class="chrome"><i></i><i></i><i></i></div><div class="pad"><div class="scr s">
+        <div class="bar"><span>Service</span><span>due this week: 5</span></div>
+        <div class="row"><div class="b">machine<div class="ln m"></div></div><div class="b">warranty<div class="ln s"></div></div></div>
+        <div class="b">service type &nbsp;·&nbsp; engineer &nbsp;·&nbsp; date</div>
+        <div class="b">notes<div class="ln l"></div></div>
+        <div class="b cta">LOG VISIT · SET NEXT DUE</div>
+      </div></div></div>
+      <div class="cap"><b>Warranty and service</b><p>Everything sold, with its warranty state and next service due. The list that turns a one-off sale into a relationship.</p></div>
+    </div>
+
+    <div>
+      <div class="idx">21</div>
+      <div class="desk"><div class="chrome"><i></i><i></i><i></i></div><div class="pad"><div class="scr s">
+        <div class="bar"><span>Accounts</span><span>9 closing</span></div>
+        <div class="row"><div class="b">invoice<div class="ln m"></div></div><div class="b">farmer paid<div class="ln s"></div></div></div>
+        <div class="row"><div class="b">claim filed<div class="ln s"></div></div><div class="b">subsidy received<div class="ln s"></div></div></div>
+        <div class="b cta">CLOSE FILE</div>
+      </div></div></div>
+      <div class="cap"><b>Accounts and subsidy</b><p>Invoice, farmer contribution, claim filed, subsidy received. The file only closes once all four are settled.</p></div>
+    </div>
+
+    <div>
+      <div class="idx">22</div>
+      <div class="desk"><div class="chrome"><i></i><i></i><i></i></div><div class="pad"><div class="scr s">
+        <div class="bar"><span>Owner dashboard</span><span>year &#9662;</span></div>
+        <div class="row"><div class="b">files<div class="ln s"></div></div><div class="b">sold<div class="ln s"></div></div><div class="b">rejected<div class="ln s"></div></div></div>
+        <div class="b f">BY DEPARTMENT · BY BRANCH · BY STAFF</div>
+        <div class="b">pipeline by stage &nbsp;·&nbsp; subsidy owed</div>
+      </div></div></div>
+      <div class="cap"><b>Owner dashboard</b><p>Super Admin only. The whole business on one screen - including the rejection rate, which is the number this system exists to bring down.</p></div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<footer><div class="wrap">
+  <span>SKR Trader - Wireframes</span>
+  <a class="back" href="index.html"><span>&#8592;</span> Back to the plan</a>
+</div></footer>
+
+</body>
+</html>

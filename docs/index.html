@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKR Trader - Product Plan</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1c1b18; --ink-2:#56534c; --ink-3:#8b877e;
+  --line:#e5e1d8; --line-2:#d4cfc3; --accent:#2f6b46; --accent-soft:#eaf2ec;
+  --warn:#8a5a1c; --warn-soft:#fbf1e2; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --bg:#14150f; --panel:#1b1c16; --ink:#ecebe4; --ink-2:#a8a49a; --ink-3:#7a766c;
+  --line:#2c2d25; --line-2:#3a3b31; --accent:#7fb894; --accent-soft:#1d2a22;
+  --warn:#d3a463; --warn-soft:#2a2318;
+}}
+:root[data-theme=dark]{
+  --bg:#14150f; --panel:#1b1c16; --ink:#ecebe4; --ink-2:#a8a49a; --ink-3:#7a766c;
+  --line:#2c2d25; --line-2:#3a3b31; --accent:#7fb894; --accent-soft:#1d2a22;
+  --warn:#d3a463; --warn-soft:#2a2318;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px}
+@media(max-width:900px){.wrap{grid-template-columns:1fr;gap:0}}
+
+header.top{border-bottom:1px solid var(--line);background:var(--bg);position:relative;z-index:2}
+.top-in{max-width:1180px;margin:0 auto;padding:56px 24px 44px}
+h1{font-size:clamp(34px,5vw,52px);line-height:1.08;letter-spacing:-.02em;margin:0 0 16px;font-weight:600}
+.lede{font-size:19px;line-height:1.6;color:var(--ink-2);max-width:640px;margin:0}
+
+nav{position:sticky;top:0;align-self:start;padding:48px 0;max-height:100vh;overflow:auto}
+@media(max-width:900px){nav{position:static;max-height:none;padding:28px 0 0;border-bottom:1px solid var(--line)}}
+nav ol{list-style:none;margin:0;padding:0;counter-reset:n}
+nav li{counter-increment:n;margin:0 0 2px}
+nav a{display:block;padding:5px 0 5px 26px;position:relative;color:var(--ink-3);text-decoration:none;font-size:13.5px;line-height:1.4;transition:color .15s}
+nav a::before{content:counter(n,decimal-leading-zero);position:absolute;left:8px;font:11px var(--mono);color:var(--line-2)}
+nav a:hover{color:var(--ink)}
+
+article{padding:48px 0 120px;min-width:0}
+section{scroll-margin-top:24px;padding-bottom:8px}
+section+section{margin-top:64px;padding-top:56px;border-top:1px solid var(--line)}
+h2{font-size:28px;letter-spacing:-.015em;margin:0 0 18px;font-weight:600;line-height:1.2}
+h2 .num{font:400 13px var(--mono);color:var(--accent);display:block;margin-bottom:10px;letter-spacing:.1em}
+h3{font-size:17px;margin:36px 0 10px;font-weight:600;letter-spacing:-.005em}
+h4{font-size:14px;margin:22px 0 8px;font-weight:600;color:var(--ink-2);font-family:var(--mono);letter-spacing:.02em}
+p{margin:0 0 16px;color:var(--ink-2)}
+strong{color:var(--ink);font-weight:600}
+ul,ol{color:var(--ink-2);padding-left:20px;margin:0 0 16px}
+li{margin-bottom:7px}
+code{font:13px var(--mono);background:var(--accent-soft);color:var(--ink);padding:1px 5px;border-radius:4px}
+a{color:var(--accent)}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin:0 0 16px}
+.card h4{margin-top:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.grid2{grid-template-columns:1fr}}
+.note{border-left:3px solid var(--warn);background:var(--warn-soft);padding:14px 18px;border-radius:0 8px 8px 0;margin:0 0 18px}
+.note p{margin:0;color:var(--ink-2);font-size:14.5px}
+.note b{color:var(--warn);font:11px var(--mono);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:6px}
+.tag{display:inline-block;font:11px var(--mono);letter-spacing:.06em;padding:3px 8px;border-radius:20px;border:1px solid var(--line-2);color:var(--ink-3);margin:0 6px 6px 0}
+.tag.on{background:var(--accent-soft);border-color:transparent;color:var(--accent)}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:0 0 18px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:13.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font:11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);background:var(--bg)}
+tbody tr:last-child td{border-bottom:none}
+td:first-child,th:first-child{position:sticky;left:0;background:var(--panel);color:var(--ink);font-weight:500}
+thead th:first-child{background:var(--bg)}
+.y{color:var(--accent);font-weight:600}
+.n{color:var(--ink-3)}
+.r{color:var(--warn);font-weight:600}
+
+.tree{font:13px/1.8 var(--mono);color:var(--ink-2);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;overflow-x:auto;white-space:pre;margin:0 0 18px}
+.tree b{color:var(--ink)}
+
+.stages{list-style:none;padding:0;margin:0 0 18px;counter-reset:s}
+.stages li{counter-increment:s;position:relative;padding:0 0 22px 42px;border-left:1px solid var(--line);margin:0}
+.stages li:last-child{border-left-color:transparent;padding-bottom:0}
+.stages li::before{content:counter(s);position:absolute;left:-13px;top:-2px;width:26px;height:26px;border-radius:50%;background:var(--panel);border:1px solid var(--line-2);color:var(--ink-3);font:11px/24px var(--mono);text-align:center}
+.stages b{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
+.stages .who{font:11px var(--mono);color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+.stages p{margin:4px 0 0;font-size:14.5px}
+
+.checks{list-style:none;padding:0;margin:0 0 18px;counter-reset:c}
+.checks li{counter-increment:c;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line);margin:0}
+.checks li:last-child{border-bottom:none}
+.checks li::before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:16px;font:11px var(--mono);color:var(--accent)}
+.checks b{color:var(--ink);display:block;margin-bottom:3px;font-size:15px}
+.checks span{font-size:14px;color:var(--ink-2)}
+
+.bigl{display:grid;grid-template-columns:1fr auto;gap:4px 20px;align-items:center;
+  text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:22px 24px;margin:8px 0 0;transition:border-color .15s,transform .15s}
+.bigl:hover{border-color:var(--accent);transform:translateY(-1px)}
+.bigl-k{grid-column:1;font:11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.bigl-t{grid-column:1;font-size:19px;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.3}
+.bigl-s{grid-column:1;font-size:14px;color:var(--ink-3)}
+.bigl-a{grid-column:2;grid-row:1/4;font-size:22px;color:var(--accent)}
+
+.qgroup{margin:0 0 30px}
+.qgroup>h3{margin-top:0}
+.q{border-bottom:1px solid var(--line);padding:12px 0 12px 38px;position:relative;font-size:14.5px;color:var(--ink-2)}
+.q:last-child{border-bottom:none}
+.q::before{content:attr(data-n);position:absolute;left:0;top:12px;font:11px var(--mono);color:var(--accent)}
+.q em{color:var(--ink-3);font-style:normal;display:block;font-size:13px;margin-top:3px}
+
+footer{border-top:1px solid var(--line);padding:32px 0 60px;font:12px var(--mono);color:var(--ink-3);letter-spacing:.03em}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <h1>SKR Trader</h1>
+    <p class="lede">One system for a farm-machinery dealership: from the first photograph of an Aadhaar card, through the subsidy file the department will actually accept, to the machine in the field and the money back in the account.</p>
+  </div>
+</header>
+
+<div class="wrap">
+<nav>
+  <ol>
+    <li><a href="#intro">What we are building</a></li>
+    <li><a href="#business">The business behind it</a></li>
+    <li><a href="#intake">How a file starts</a></li>
+    <li><a href="#documents">Documents and what we read</a></li>
+    <li><a href="#checks">Catching rejections early</a></li>
+    <li><a href="#people">Who uses the app</a></li>
+    <li><a href="#roles">Role by role</a></li>
+    <li><a href="#matrix">Permission matrix</a></li>
+    <li><a href="#lifecycle">Life of one lead</a></li>
+    <li><a href="#wireframes">Screen wireframes</a></li>
+    <li><a href="#phases">Build order</a></li>
+    <li><a href="#questions">Questions for SKR</a></li>
+  </ol>
+</nav>
+
+<article>
+
+<!-- 1 -->
+<section id="intro">
+  <h2><span class="num">01</span>What we are building</h2>
+
+  <p>SKR sells agricultural machinery. Most of that machinery is bought under a government subsidy scheme, which means every sale is really two jobs running at once: <strong>selling a machine</strong>, and <strong>assembling a file the department will accept</strong>.</p>
+
+  <p>The second job is where the money leaks. A file is submitted, a village name is spelled one way on the Patta and another way in the farmer database, and the application comes back. Correcting it on the government portal takes up to seven days. Multiply that across a season and it is weeks of lost time, a frustrated farmer, and sometimes a lost sale.</p>
+
+  <p>This system does three things about that.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>1 · Collect without typing</h4>
+      <p>A photograph of an Aadhaar card, a Patta, a certificate - sent from the field or over WhatsApp - is read automatically and lands in the right field, against the right farmer.</p>
+    </div>
+    <div class="card">
+      <h4>2 · Check before the department does</h4>
+      <p>Every document is compared against every other one, and against what the scheme requires, before anything is submitted. Mismatches surface while the farmer is still standing there.</p>
+    </div>
+    <div class="card">
+      <h4>3 · Carry the file to the end</h4>
+      <p>One record moves from telecaller to coordinator to store to delivery to accounts, with a timeline showing who did what. Nothing is skipped and nothing is re-typed.</p>
+    </div>
+    <div class="card">
+      <h4>And underneath: control</h4>
+      <p>The owner decides who can see prices, who can approve, who can delete. Everyone else sees only the slice of the business they are responsible for.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="business">
+  <h2><span class="num">02</span>The business behind it</h2>
+
+  <h3>SMAM, and the three departments under it</h3>
+  <p>SMAM is the central scheme under which subsidised machinery is sold. Applications do not all go to one office - they are routed to one of three implementing departments, and each has its own product list, its own subsidy rates, its own approved brands and its own application window.</p>
+
+  <div class="tree"><b>SMAM</b>
+ │
+ ├── <b>AED</b>   Agricultural Engineering Department
+ │        tractors, power tillers, heavy implements
+ │
+ ├── <b>Agri</b>  Department of Agriculture
+ │        general farm machinery, small implements
+ │
+ └── <b>Horti</b> Department of Horticulture
+          horticulture equipment · window: <b>August &#8594; March</b></div>
+
+  <p>So a lead is never just "farmer plus product". It is <strong>farmer, product, department and scheme year</strong>. The same power weeder applied for through Agri and through AED can carry a different subsidy percentage, a different approved brand list and a different document checklist. The app has to know which department a file belongs to from the moment the product is chosen.</p>
+
+  <h3>The registration ID changed everything</h3>
+  <p>The old process was paper: submit the documents, and it was done. That is over. Every farmer now has a <strong>registration ID</strong>, and the department reads its own database off that ID. Without the ID, nothing moves. And if any detail on the submitted documents disagrees with what that database already holds, the file stops.</p>
+
+  <p>This is the single most important fact in this document, and it shapes the whole system: <strong>the farmer's registration ID is the spine.</strong> Every document, every land record, every order and every delivery hangs off it. One farmer, one ID, one record - so that what SKR submits and what the department already believes are the same thing.</p>
+
+  <h3>Why files come back</h3>
+  <ul>
+    <li><strong>Name spelled differently</strong> across Aadhaar, Patta, certificate and the department database - including honorifics and reordered words.</li>
+    <li><strong>Village or taluk written two ways.</strong> One document says Mukoodal, another says Idaikaal, and the portal treats them as different places.</li>
+    <li><strong>Land extent that does not add up</strong> once hectare-are notation is converted to acres.</li>
+    <li><strong>A vehicle record that is too old.</strong> Machinery registered beyond roughly ten years is commonly rejected outright - and there is no point building a file around it.</li>
+    <li><strong>A missing document</strong> that this particular scheme and this particular category required.</li>
+  </ul>
+
+  <p>None of these need a human to find. All of them are currently found by the department, a week too late.</p>
+
+  <div class="note">
+    <b>Not yet understood - needs SKR</b>
+    <p>The notes show, under AED: <code>1 to 7 &#8594; 6 (Lot)</code>, with circled figures <code>8</code>, <code>22</code> and <code>32</code>. We have read these as something like application categories 1-7, a lot or batch of 6, and counts against a total. We have deliberately not guessed further - Questions 14-19 ask SKR to explain this, because it likely defines how AED files are batched and submitted.</p>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="intake">
+  <h2><span class="num">03</span>How a file starts</h2>
+
+  <p>Two doors, one record. Whichever door a document comes in through, it ends up attached to the same farmer, under the same registration ID.</p>
+
+  <div class="card">
+    <h4>Door 1 · WhatsApp</h4>
+    <p>Staff send a photograph of an Aadhaar card to a dedicated SKR number. The system reads it, creates or matches the farmer, and replies with what it captured and what is still missing. The Patta, the community certificate, the RC book and the bank passbook follow the same way - each one recognised for what it is and filed into the right fields.</p>
+    <p>The appeal is obvious: no app to install, no training, and it is where the documents already are.</p>
+  </div>
+
+  <div class="card">
+    <h4>Door 2 · The app</h4>
+    <p>The same thing with a camera and a form. Staff in the field open the attachments screen, photograph each document in turn, review what was read, correct anything wrong, and move on through the lead. Drafts survive a dropped signal.</p>
+    <p>This is the door that also handles everything WhatsApp cannot: approvals, stock, delivery, accounts and reporting.</p>
+  </div>
+
+  <div class="note">
+    <b>A decision to make together</b>
+    <p>WhatsApp is a genuinely good intake channel, but it is not free and not unconstrained: business messaging runs through Meta's official API, is charged per conversation, and can only reply to a person within a set window after they message. It is also a poor place to review a fifty-field form. Our recommendation is to build the app first and add WhatsApp intake as a second channel into the same system, rather than trying to run the whole business through chat. Question 09 puts this to SKR directly.</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="documents">
+  <h2><span class="num">04</span>Documents and what we read</h2>
+
+  <p>Nine document types, each read automatically, each feeding specific fields. Nothing is trusted blind - a person confirms every reading before it saves.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Document</th><th>What the app reads from it</th><th>Why it is needed</th></tr></thead>
+    <tbody>
+      <tr><td>Aadhaar card</td><td>Name, father or spouse name, date of birth, gender, address, Aadhaar number</td><td>Seeds the whole farmer profile without typing</td></tr>
+      <tr><td>Farmer registration</td><td>The registration ID</td><td>The spine everything else attaches to</td></tr>
+      <tr><td>Patta / Chitta</td><td>Patta number, survey number, sub-division, land type, extent, water rate, district, taluk, village</td><td>Proves the land and who owns it</td></tr>
+      <tr><td>Adangal</td><td>Crop and cultivation record against the survey number</td><td>Supports the land claim for certain schemes</td></tr>
+      <tr><td>Small &amp; Marginal Farmer certificate</td><td>Certificate number and date, farmer and father name, address, every land row, total extent</td><td>Establishes the subsidy category; expires</td></tr>
+      <tr><td>Community certificate</td><td>Community category</td><td>Sets the subsidy slab. If not uploaded, the farmer is treated as General</td></tr>
+      <tr><td>RC book (tractor / vehicle)</td><td>Registration number and registration date</td><td>Age check - an old registration is a file that will be rejected</td></tr>
+      <tr><td>Bank passbook</td><td>Account number, IFSC, account holder name</td><td>Where the subsidy is credited; the name must match</td></tr>
+      <tr><td>Farmer photo</td><td>-</td><td>Attached to the application</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>Two of these already work today: the <strong>Patta</strong> reader and the <strong>certificate</strong> reader, including Tamil land-type text, hectare-to-acre conversion and multi-row certificates. The rest follow the same pattern.</p>
+
+  <div class="note">
+    <b>Aadhaar needs a decision, not an assumption</b>
+    <p>Storing full Aadhaar numbers and card images carries legal obligations in India around consent, masking and retention. We can read an Aadhaar to fill the form and then store only a masked number, or store the full number if SKR's process genuinely requires it. This is a choice SKR should make deliberately, with its own advice - Question 27.</p>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="checks">
+  <h2><span class="num">05</span>Catching rejections early</h2>
+
+  <p>This is the part that pays for the system. Before anything is submitted, every document is checked against every other document, and against what the scheme demands. The result is one pre-submission report - and the file only goes out when it is clean.</p>
+
+  <ol class="checks">
+    <li><b>Name, across everything</b><span>Aadhaar, Patta, certificate, bank passbook and the registration record compared as a set of words, with honorifics stripped and initials ignored, so a real difference stands out and a harmless one does not.</span></li>
+    <li><b>Place names, across everything</b><span>District, taluk and village compared across documents, with a maintained list of known alternate spellings so that two names for the same village are recognised rather than flagged - and two genuinely different villages are caught.</span></li>
+    <li><b>Patta and survey numbers</b><span>Compared as sets, so order and punctuation do not matter, and a missing survey number is obvious.</span></li>
+    <li><b>Land extent</b><span>Hectare-are notation converted to acres, row totals added up and compared against the stated total, within a tolerance that allows for rounding but not for a real discrepancy.</span></li>
+    <li><b>Certificate validity</b><span>The Small &amp; Marginal Farmer certificate checked against its issue date and flagged if it falls outside the accepted window.</span></li>
+    <li><b>Category and community</b><span>If a community certificate is attached, the category is taken from it; if not, the farmer is treated as General - and the subsidy slab follows from that automatically.</span></li>
+    <li><b>Vehicle age</b><span>Registration date read from the RC book and checked against the age limit before effort is spent on the file.</span></li>
+    <li><b>Scheme eligibility</b><span>Is this product, this brand and this category actually approved for this department and this scheme year? Checked at the point the product is chosen, not after submission.</span></li>
+    <li><b>Completeness</b><span>Which documents does this scheme, for this category, actually require - and which are still missing? Shown as a checklist that has to be green before the file can be submitted.</span></li>
+  </ol>
+
+  <p>The output is a single report: every field, what each document says, and a verdict. Clean files are marked ready. Anything doubtful is put in front of a person, with the exact disagreement named. The report can be downloaded as a PDF for the file.</p>
+</section>
+
+<!-- 6 -->
+<section id="people">
+  <h2><span class="num">06</span>Who uses the app</h2>
+
+  <p>Three levels of access.</p>
+
+  <div class="tree"><b>SUPER ADMIN  (Owner)</b>
+      │  sees everything · creates every account · the only role that can delete
+      │
+      ├── <b>ADMIN</b>  - department heads, full control of their own area
+      │       1. Coordinator      runs the pipeline, approves files
+      │       2. Store            stock, allocation, serial numbers
+      │       3. Delivery         dispatch, transport, proof of delivery
+      │       4. Accounts         invoices, subsidy claims, payments
+      │
+      └── <b>STAFF</b>  - day-to-day operators, narrow permissions
+              1. Telecaller / Sales     creates and chases leads
+              2. Department Coordinator handles one department's filings</div>
+
+  <p>The important line is the one between <strong>Admin</strong> and <strong>Staff</strong>. An admin can approve, reassign and edit within their department. Staff can only create and update their own work - they cannot approve their own files, and they cannot see the whole pipeline.</p>
+</section>
+
+<!-- 7 -->
+<section id="roles">
+  <h2><span class="num">07</span>Role by role</h2>
+
+  <div class="card">
+    <h4>Super Admin - the owner</h4>
+    <p><strong>Opens the app to:</strong> the whole business on one screen. Leads by stage, by department, by branch, by staff member. Money committed, subsidy claimed, subsidy received, stock on hand, rejection rate.</p>
+    <p><strong>Can do:</strong> everything. Create and deactivate accounts, assign roles, set subsidy rates and prices, maintain approved brand and product lists, override any stage, delete records, export everything, read the full history.</p>
+    <p><strong>Only role that can:</strong> delete a record, and see cost price and margin.</p>
+  </div>
+
+  <div class="card">
+    <h4>Coordinator - admin</h4>
+    <p><strong>Opens the app to:</strong> an approval queue - files that passed the checks and are waiting for a human to say "send it".</p>
+    <p><strong>Can do:</strong> approve or reject with a reason, reassign a lead between staff, set priority, push an approved file onward, chase anything stuck.</p>
+    <p><strong>Cannot:</strong> delete records, change prices, or create accounts.</p>
+  </div>
+
+  <div class="card">
+    <h4>Store - admin</h4>
+    <p><strong>Opens the app to:</strong> approved leads waiting for stock, and the current stock position by product and branch.</p>
+    <p><strong>Can do:</strong> receive stock in, allocate a specific unit by serial, chassis and engine number, mark it ready for dispatch, flag low stock, run a physical count.</p>
+    <p><strong>Cannot:</strong> see farmer financial details, approve files, or change the scheme.</p>
+  </div>
+
+  <div class="card">
+    <h4>Delivery - admin</h4>
+    <p><strong>Opens the app to:</strong> today's run sheet - which machines go to which villages, in what order.</p>
+    <p><strong>Can do:</strong> assign vehicle and driver, mark dispatched, capture proof of delivery with photo, signature and date, record a failed or postponed delivery with a reason.</p>
+    <p><strong>Cannot:</strong> edit farmer or land details, see prices, or close a lead.</p>
+  </div>
+
+  <div class="card">
+    <h4>Accounts - admin</h4>
+    <p><strong>Opens the app to:</strong> delivered leads that are not yet financially closed.</p>
+    <p><strong>Can do:</strong> raise the invoice, record the farmer's contribution, file the subsidy claim, record subsidy received, flag a shortfall, close the lead.</p>
+    <p><strong>Cannot:</strong> alter documents or delivery records - they read them as evidence for the claim.</p>
+  </div>
+
+  <div class="card">
+    <h4>Telecaller / Sales - staff</h4>
+    <p><strong>Opens the app to:</strong> their own farmers and today's call list.</p>
+    <p><strong>Can do:</strong> create a lead, log a call outcome and a follow-up date, send or photograph the documents, review what was read, see the check report, and submit for approval.</p>
+    <p><strong>Cannot:</strong> see other staff members' leads, approve anything, see cost price, or move a file past "submitted".</p>
+  </div>
+
+  <div class="card">
+    <h4>Department Coordinator - staff</h4>
+    <p><strong>Opens the app to:</strong> the queue for one department only - AED, Agri or Horti.</p>
+    <p><strong>Can do:</strong> take approved files, batch them for submission, record the department's reference number and status, and attach the sanction order.</p>
+    <p><strong>Cannot:</strong> see other departments' files, or change product and price.</p>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="matrix">
+  <h2><span class="num">08</span>Permission matrix</h2>
+
+  <p>Our proposal. Every cell is a decision SKR should confirm or change - this table is the single most useful thing to review.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr>
+      <th>Action</th><th>Super&nbsp;Admin</th><th>Coordinator</th><th>Store</th><th>Delivery</th><th>Accounts</th><th>Telecaller</th><th>Dept&nbsp;Coord</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>Create farmer lead</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="y">Yes</td><td class="n">-</td></tr>
+      <tr><td>Edit own lead</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="y">Yes</td><td class="n">-</td></tr>
+      <tr><td>Edit anyone's lead</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td></tr>
+      <tr><td>Upload documents</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+      <tr><td>Approve / reject file</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td></tr>
+      <tr><td>Allocate stock &amp; serial no.</td><td class="y">Yes</td><td class="n">View</td><td class="y">Yes</td><td class="n">View</td><td class="n">-</td><td class="n">-</td><td class="n">-</td></tr>
+      <tr><td>Mark dispatched / delivered</td><td class="y">Yes</td><td class="n">View</td><td class="n">View</td><td class="y">Yes</td><td class="n">View</td><td class="n">-</td><td class="n">-</td></tr>
+      <tr><td>File department submission</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="y">Yes</td></tr>
+      <tr><td>Record service &amp; warranty</td><td class="y">Yes</td><td class="n">View</td><td class="n">-</td><td class="y">Yes</td><td class="n">View</td><td class="n">View</td><td class="n">-</td></tr>
+      <tr><td>Raise invoice / record payment</td><td class="y">Yes</td><td class="n">View</td><td class="n">-</td><td class="n">-</td><td class="y">Yes</td><td class="n">-</td><td class="n">-</td></tr>
+      <tr><td>See selling price</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">-</td><td class="n">-</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+      <tr><td>See cost price &amp; margin</td><td class="y">Yes</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td></tr>
+      <tr><td>Create / disable accounts</td><td class="y">Yes</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td></tr>
+      <tr><td>Set prices, rates &amp; brand lists</td><td class="y">Yes</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td></tr>
+      <tr><td>Export reports</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Own</td><td class="y">Own</td><td class="y">Yes</td><td class="n">-</td><td class="y">Own</td></tr>
+      <tr><td>Delete a record</td><td class="r">Only</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td></tr>
+      <tr><td>View full history</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p><span class="tag on">Yes</span> full rights <span class="tag">View</span> can see but not change <span class="tag">Own</span> limited to their own records <span class="tag">-</span> hidden entirely</p>
+</section>
+
+<!-- 9 -->
+<section id="lifecycle">
+  <h2><span class="num">09</span>Life of one lead</h2>
+
+  <p>Ten stages. Each is owned by exactly one role, and a file cannot skip forward.</p>
+
+  <ol class="stages">
+    <li><b>Lead created</b><span class="who">Telecaller</span><p>Farmer captured from an Aadhaar photograph, matched to a registration ID, and completed through the wizard: basic details, land, product and scheme, delivery.</p></li>
+    <li><b>Documents uploaded</b><span class="who">Telecaller</span><p>Patta, certificate, community certificate, RC book and passbook sent in from the app or over WhatsApp, read automatically and confirmed field by field by the person holding the phone.</p></li>
+    <li><b>Documents verified</b><span class="who">System, then Coordinator</span><p>The nine checks in Section 05 run and produce one report. A clean file is marked ready; a disagreement is put in front of a person with the exact field named.</p></li>
+    <li><b>File approved</b><span class="who">Coordinator</span><p>A human signs off that the file is fit to submit. Rejections go back to the telecaller with a reason.</p></li>
+    <li><b>Submitted to department</b><span class="who">Dept Coordinator</span><p>Batched and filed with AED, Agri or Horti. Reference number recorded, status tracked until sanctioned or rejected.</p></li>
+    <li><b>Product confirmed, stock allocated</b><span class="who">Store</span><p>A specific physical unit - serial, chassis, engine number - is tied to the file and taken out of available stock.</p></li>
+    <li><b>Dispatched</b><span class="who">Delivery</span><p>Vehicle and driver assigned, machine leaves the yard.</p></li>
+    <li><b>Delivery completed</b><span class="who">Delivery</span><p>Proof captured at the farmer's site: photo, signature, date.</p></li>
+    <li><b>Warranty active, service scheduled</b><span class="who">Service</span><p>The warranty clock starts from the delivery date. Service type, engineer and next service due are tracked from here on.</p></li>
+    <li><b>Closed</b><span class="who">Accounts</span><p>Invoice raised, farmer contribution received, subsidy claimed and received. Only then does the file close.</p></li>
+  </ol>
+
+  <div class="note">
+    <b>An ordering question we cannot answer ourselves</b>
+    <p>We have put <strong>department submission before stock allocation</strong> - wait for sanction, then commit a machine. If SKR actually delivers first and claims afterwards, stages 5 and 6-8 swap and the store screens change shape. Question 22.</p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="wireframes">
+  <h2><span class="num">10</span>Screen wireframes</h2>
+
+  <p>The screens are drawn out on their own page - the field journey on the phone, the OCR and checking screens, and the office screens. They are boxes and captions only: what exists and what sits where, with nothing said about colour, wording or how the finished app will look.</p>
+
+  <a class="bigl" href="wireframes.html">
+    <span class="bigl-k">Open</span>
+    <span class="bigl-t">The screen wireframes</span>
+    <span class="bigl-s">Field journey, document reading, office screens and the flow that joins them</span>
+    <span class="bigl-a">&#8594;</span>
+  </a>
+</section>
+
+<!-- 11 -->
+<section id="phases">
+  <h2><span class="num">11</span>Build order</h2>
+
+  <p>Four phases. Each ends with something SKR can actually put in a staff member's hands.</p>
+
+  <div class="card">
+    <h4>Phase 1 - Capture and check</h4>
+    <p>Real accounts and login, the three access levels and the permission matrix, the lead wizard, the attachments screen, readers for Aadhaar, Patta, certificate, community certificate and RC book, the registration ID as the spine, and the pre-submission check report. Drafts that survive a dead signal.</p>
+    <p><strong>Ends with:</strong> a telecaller able to build a complete, checked file in the field, and know before submitting whether it will pass.</p>
+  </div>
+  <div class="card">
+    <h4>Phase 2 - The office half</h4>
+    <p>Coordinator approval queue. Department submission and batching. Store allocation with serial numbers. Delivery run sheet and proof of delivery. Warranty and service tracking.</p>
+    <p><strong>Ends with:</strong> a file travelling from first call to delivered machine entirely inside the system.</p>
+  </div>
+  <div class="card">
+    <h4>Phase 3 - Money, reporting and WhatsApp</h4>
+    <p>Invoicing, farmer contribution, subsidy claim tracking, reconciliation. Owner dashboard including rejection rate. Exports in the formats the departments expect. WhatsApp intake as a second door into the same records.</p>
+    <p><strong>Ends with:</strong> the owner able to answer "how much subsidy are we owed, and why did those four files come back" without asking anyone.</p>
+  </div>
+  <div class="card">
+    <h4>Phase 4 - Sharpen</h4>
+    <p>Better reading accuracy on worn and faded documents, Tamil interface, farmer notifications, service follow-up reminders, and any direct integration with government systems that turns out to be available.</p>
+  </div>
+
+  <div class="note">
+    <b>Not estimating yet</b>
+    <p>Timelines and cost come after Section 12 is answered. Several answers - especially 09, 14-19 and 22 - change the size of Phase 1 and Phase 2 significantly, and we would rather quote once, accurately.</p>
+  </div>
+</section>
+
+<!-- 12 -->
+<section id="questions">
+  <h2><span class="num">12</span>Questions for SKR</h2>
+
+  <p>Everything below is something we have had to assume. Correcting an assumption now costs a sentence; correcting it after Phase 2 costs weeks.</p>
+
+  <div class="qgroup">
+    <h3>First, the obvious one</h3>
+    <div class="q" data-n="01">Is the business name <strong>SKR Trader</strong> or <strong>SRK Trader</strong>? Both spellings are in circulation between the artwork and the working files, and it needs to be right everywhere before anything is printed.</div>
+  </div>
+
+  <div class="qgroup">
+    <h3>The registration ID and the government systems</h3>
+    <div class="q" data-n="02">Where does a farmer's registration ID come from - does the farmer already have one, or does SKR create it for them?<em>Everything in the system hangs off this ID, so we need to know exactly how it is obtained.</em></div>
+    <div class="q" data-n="03">Can SKR look up a farmer's existing registration details by ID, and if so, on which portal?</div>
+    <div class="q" data-n="04">Is there any official way to read that data programmatically, or is it always a person looking at a screen?</div>
+    <div class="q" data-n="05">What happens today when a farmer has no registration ID at all? Is that a lead you decline, or a step you do for them?</div>
+    <div class="q" data-n="06">On e-Sevai, is the application typed in by hand every time? If so, would an export in exactly the right order and format save real time?</div>
+    <div class="q" data-n="07">Roughly what share of files come back rejected in a year, and what are the top three reasons?<em>This number is the business case. We would like to be able to show it falling.</em></div>
+    <div class="q" data-n="08">Do you keep a list of villages that are written more than one way? If not, we will build one as we go - but an existing list would save months.</div>
+  </div>
+
+  <div class="qgroup">
+    <h3>WhatsApp</h3>
+    <div class="q" data-n="09">Should WhatsApp intake be built in the first release, or added once the app is running?<em>Our recommendation is the app first, WhatsApp second. This is the biggest scope question in the document.</em></div>
+    <div class="q" data-n="10">Who would send documents to the WhatsApp number - only SKR staff, or farmers themselves?<em>If farmers send directly, the system has to handle strangers, wrong documents and unreadable photos, which is a materially larger job.</em></div>
+    <div class="q" data-n="11">Is there an existing SKR business number for this, and roughly how many documents a day would come through it?</div>
+    <div class="q" data-n="12">Should the system reply on WhatsApp with what it read and what is missing, or stay silent and just file things?</div>
+    <div class="q" data-n="13">Would SKR accept the same intake over a simple web link instead, if WhatsApp turns out to be expensive or restricted?</div>
+  </div>
+
+  <div class="qgroup">
+    <h3>The scheme, the departments, and that page of numbers</h3>
+    <div class="q" data-n="14">Under AED the note reads "1 to 7". What are 1 to 7 - categories, stages of the application, or priority levels?<em>Questions 14-19 all refer to the second half of the handwritten notes.</em></div>
+    <div class="q" data-n="15">What does the circled <strong>6 (Lot)</strong> mean? Are files submitted in lots of six?</div>
+    <div class="q" data-n="16">What are the circled <strong>8</strong>, <strong>22</strong> and <strong>32</strong> - counts, targets, quotas, or product codes?</div>
+    <div class="q" data-n="17">Is there an allocation or quota per department per season that the system should count down against?</div>
+    <div class="q" data-n="18">When files go to a department, do they go one at a time or as a batch under one covering reference?</div>
+    <div class="q" data-n="19">What statuses does an application pass through, in the department's own words?</div>
+    <div class="q" data-n="20">Do AED, Agri and Horti each have different approved product and brand lists, and different subsidy percentages? Can we have the current lists?</div>
+    <div class="q" data-n="21">Horti runs August to March. What are the windows for AED and Agri?</div>
+  </div>
+
+  <div class="qgroup">
+    <h3>Process and stages</h3>
+    <div class="q" data-n="22">Does SKR deliver the machine <strong>before</strong> or <strong>after</strong> the department sanctions the subsidy?<em>This is the single biggest structural question in the document.</em></div>
+    <div class="q" data-n="23">Is the ten-stage flow in Section 09 how the business actually runs? Anything missing, anything that never happens?</div>
+    <div class="q" data-n="24">Can a file be cancelled after stock is allocated? Who may do that, and what happens to the reserved machine?</div>
+    <div class="q" data-n="25">Roughly how many leads a month, and how many close?</div>
+    <div class="q" data-n="26">Are staff paid any incentive per closed file? If so, the system needs to compute it.</div>
+  </div>
+
+  <div class="qgroup">
+    <h3>Documents and checking</h3>
+    <div class="q" data-n="27">How should Aadhaar be stored - full number, masked number, or the image only until the file closes?<em>This has legal implications and SKR should decide it deliberately.</em></div>
+    <div class="q" data-n="28">The vehicle age limit: is it exactly ten years, and is it counted from the registration date?</div>
+    <div class="q" data-n="29">Does the document checklist change by department, by category, or by product? We have assumed all three.</div>
+    <div class="q" data-n="30">If every check passes cleanly, may the system approve on its own, or must a coordinator always press approve?</div>
+    <div class="q" data-n="31">How much land extent difference between documents is genuinely acceptable before it is a real problem?</div>
+    <div class="q" data-n="32">If a community certificate is missing, treating the farmer as General is our assumption. Correct?</div>
+    <div class="q" data-n="33">How long must document photographs be kept after a file closes?</div>
+  </div>
+
+  <div class="qgroup">
+    <h3>Stock, delivery, service and money</h3>
+    <div class="q" data-n="34">Is stock tracked per individual machine with a serial or chassis number, or only as a count per product?</div>
+    <div class="q" data-n="35">Should the system print the invoice, or does that stay in Tally or whatever you use today?</div>
+    <div class="q" data-n="36">If you already use accounting software, should the system push data into it, or will accounts re-enter?</div>
+    <div class="q" data-n="37">Does the farmer pay in instalments, and does the system need to track a part-payment schedule?</div>
+    <div class="q" data-n="38">What does a delivery need as proof to satisfy an audit - photo, signature, GPS location, all three?</div>
+    <div class="q" data-n="39">Who are the service engineers, and should they get their own login and job list?</div>
+  </div>
+
+  <div class="qgroup">
+    <h3>People and practicalities</h3>
+    <div class="q" data-n="40">Roughly how many people will use the system, and how do they split across the roles?</div>
+    <div class="q" data-n="41">One branch or several? If several, should a person only ever see their own branch?</div>
+    <div class="q" data-n="42">Can one person hold two roles - a store keeper who also does deliveries? We have assumed yes.</div>
+    <div class="q" data-n="43">Android only, or iPhones too? And does anyone need to work on a laptop rather than a phone?</div>
+    <div class="q" data-n="44">How bad is the network in the villages your staff work in? How much must work fully offline?</div>
+    <div class="q" data-n="45">Should the interface be in Tamil, English, or both with a switch?</div>
+    <div class="q" data-n="46">Do farmers get any notification when their file is sanctioned or their delivery is scheduled?</div>
+    <div class="q" data-n="47">Is there existing data - a sheet of farmers, current stock - that must be imported on day one?</div>
+    <div class="q" data-n="48">Which reports do you produce today, for whom, and in what format? Those are the exports we must match exactly.</div>
+    <div class="q" data-n="49">Is there a deadline - a season opening, a scheme year - that the first release has to be ready for?</div>
+  </div>
+</section>
+
+</article>
+</div>
+
+<footer>
+  <div class="wrap" style="display:block;padding:0 24px">
+    SKR Trader - Product Plan
+  </div>
+</footer>
+
+</body>
+</html>
