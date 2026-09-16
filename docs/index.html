@@ -112,7 +112,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
 <header class="top">
   <div class="top-in">
     <h1>SKR Trader</h1>
-    <p class="lede">An app for the SKR team. Take a photo of a document, the app reads it and fills the form. Then it checks everything before you send the file to the department.</p>
+    <p class="lede">One system for the SKR team - a web portal for the office and a mobile app for the field, running on one cloud server. Take a photo of a document, the app reads it and fills the form. Then it checks everything before the file goes to the department.</p>
   </div>
 </header>
 
@@ -120,6 +120,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
 <nav>
   <ol>
     <li><a href="#what">What the app does</a></li>
+    <li><a href="#where">Where it runs</a></li>
     <li><a href="#ocr">Photo instead of typing</a></li>
     <li><a href="#docs">What the app reads</a></li>
     <li><a href="#checks">What the app checks</a></li>
@@ -158,14 +159,51 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
     </div>
     <div class="card">
       <h4>And the owner sees it all</h4>
-      <p style="margin:0">Every lead, every branch, every staff member. Who did what, and when.</p>
+      <p style="margin:0">Every lead, every branch, every staff member. Who did what, and when. From the web portal, live.</p>
     </div>
   </div>
 </section>
 
 <!-- 2 -->
+<section id="where">
+  <h2><span class="num">02</span>Where it runs</h2>
+
+  <p>Two ways in, one system behind them. The office works on a screen with a keyboard. The field works on a phone. Both talk to the same cloud server, so a lead created in a village is on the coordinator's screen the same minute.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>Web portal &middot; desktop or laptop</h4>
+      <p style="margin:0 0 8px">For management, admins and the department teams.</p>
+      <ul>
+        <li>Dashboard - total leads, verified, orders, delivered</li>
+        <li>Lead conversion over time, sales split by product</li>
+        <li>Leads, Farmers, Schemes (SMAM), Products, Inventory</li>
+        <li>Orders &amp; Delivery, Service &amp; Warranty, Accounts</li>
+        <li>Reports, User Management, Settings</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Mobile app &middot; Android and iOS</h4>
+      <p style="margin:0 0 8px">For field staff, sales, delivery and service teams.</p>
+      <ul>
+        <li>My leads, follow ups, pending documents, converted</li>
+        <li>Add a new lead - the eight step form</li>
+        <li>Leads, Documents, Farmers, Products, Sync, Support</li>
+        <li>Camera and document upload with reading</li>
+        <li>Works offline, syncs when the signal comes back</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>Role based access</b>
+    <p>The login decides the platform and the menu. A store admin opens the portal on stock, a field sales staff member opens the phone on their own leads. Nobody sees a screen that is not their job.</p>
+  </div>
+</section>
+
+<!-- 2 -->
 <section id="ocr">
-  <h2><span class="num">02</span>Photo instead of typing</h2>
+  <h2><span class="num">03</span>Photo instead of typing</h2>
 
   <p>This is the main idea of the app. Everything else is built around it.</p>
 
@@ -186,7 +224,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
 
 <!-- 3 -->
 <section id="docs">
-  <h2><span class="num">03</span>What the app reads</h2>
+  <h2><span class="num">04</span>What the app reads</h2>
 
   <p>Nine documents. Each one fills different fields.</p>
 
@@ -209,15 +247,17 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
 
   <p>Patta and SMF certificate already work today. The rest are built the same way.</p>
 
+  <p>A document can come in as a <strong>photo or as a PDF</strong>. Staff often already have the PDF on the phone, so making them photograph a screen would be a step backwards.</p>
+
   <div class="note">
     <b>Aadhaar needs a decision</b>
-    <p>Keeping full Aadhaar numbers and card photos has legal rules in India. The app can read the card to fill the form and then keep only a masked number, or keep the full number. SKR should choose. See question 22.</p>
+    <p>Keeping full Aadhaar numbers and card photos has legal rules in India. The app can read the card to fill the form and then keep only a masked number, or keep the full number. SKR should choose. See question 06.</p>
   </div>
 </section>
 
 <!-- 4 -->
 <section id="checks">
-  <h2><span class="num">04</span>What the app checks</h2>
+  <h2><span class="num">05</span>What the app checks</h2>
 
   <p>Before a file is sent, the app runs these checks. It shows one report at the end. Green means the file is ready.</p>
 
@@ -238,12 +278,25 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
 
 <!-- 5 -->
 <section id="features">
-  <h2><span class="num">05</span>Everything in the app</h2>
+  <h2><span class="num">06</span>Everything in the app</h2>
+
+  <div class="card">
+    <h4>Web portal</h4>
+    <ul>
+      <li>Dashboard with total leads, verified, orders and delivered</li>
+      <li>Lead conversion chart and sales split by product</li>
+      <li>Side menu: Leads, Farmers, Schemes (SMAM), Products, Inventory, Orders &amp; Delivery, Service &amp; Warranty, Accounts, Reports, User Management, Settings</li>
+      <li>Search across farmers and leads</li>
+      <li>Notifications for approvals and things waiting</li>
+      <li>Every menu item shown only to the roles that need it</li>
+    </ul>
+  </div>
 
   <div class="card">
     <h4>Leads</h4>
     <ul>
-      <li>Add a farmer through a step-by-step form</li>
+      <li>Add a farmer through a step-by-step form - eight steps</li>
+      <li>Coordinator allocates leads to field staff</li>
       <li>Farmer list with search and filter by stage</li>
       <li>Call list and follow-up dates</li>
       <li>One page per farmer with the full history</li>
@@ -257,7 +310,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
     <h4>Documents</h4>
     <ul>
       <li>Nine document slots per farmer</li>
-      <li>Upload from camera, gallery or a screenshot</li>
+      <li>Upload from camera, gallery, a screenshot or a PDF</li>
       <li>Automatic reading, with every field editable</li>
       <li>Tamil documents supported</li>
       <li>Patta compared with the certificate, row by row</li>
@@ -303,7 +356,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
     <h4>Stock</h4>
     <ul>
       <li>Stock by product and branch</li>
-      <li>Stock in, stock out</li>
+      <li>Material inward and outward</li>
       <li>One machine tied to one farmer by serial, chassis and engine number</li>
       <li>Low stock alert</li>
     </ul>
@@ -328,6 +381,8 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
       <li>Service type, date, engineer and notes</li>
       <li>Next service due date</li>
       <li>List of machines due for service</li>
+      <li>Spare parts used on a visit, taken off stock</li>
+      <li>Service closed by the engineer on the phone</li>
     </ul>
   </div>
 
@@ -337,7 +392,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
       <li>Price, subsidy amount and farmer contribution</li>
       <li>Invoice</li>
       <li>Farmer payment recorded</li>
-      <li>Subsidy claim filed and subsidy received</li>
+      <li>Subsidy claim filed, settled and received</li>
       <li>File closes only when all of it is settled</li>
     </ul>
   </div>
@@ -357,7 +412,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
   <div class="card">
     <h4>Users and access</h4>
     <ul>
-      <li>Three levels: Super Admin, Admin, Staff</li>
+      <li>Ten roles across two platforms - see section 07</li>
       <li>Owner creates accounts and sets the role</li>
       <li>Each role sees only its own work</li>
       <li>Price and margin hidden from most roles</li>
@@ -369,8 +424,10 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
   <div class="card">
     <h4>Basics</h4>
     <ul>
-      <li>Works on Android and iPhone</li>
+      <li>Web portal on any desktop or laptop browser</li>
+      <li>Mobile app on Android and iPhone</li>
       <li>Works offline, uploads when the signal comes back</li>
+      <li>Manual sync button, so staff can force an upload</li>
       <li>Branch-wise data</li>
       <li>Tamil and English</li>
     </ul>
@@ -379,55 +436,60 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
 
 <!-- 6 -->
 <section id="people">
-  <h2><span class="num">06</span>Who uses it</h2>
+  <h2><span class="num">07</span>Who uses it</h2>
 
-  <p>Three levels.</p>
+  <p>Ten roles. Five work in the portal, five work on the phone.</p>
 
-  <div class="tree"><b>SUPER ADMIN  (Owner)</b>
-      │  sees everything · creates accounts · only one who can delete
+  <div class="tree"><b>CLOUD SERVER</b>   secure · scalable · real-time sync
       │
-      ├── <b>ADMIN</b>  - head of one area
-      │       Coordinator   approves files, runs the pipeline
-      │       Store         stock and allocation
-      │       Delivery      dispatch and proof of delivery
-      │       Accounts      invoice, claim and payment
+      ├── <b>WEB PORTAL</b>  desktop / laptop · management and department teams
+      │       <b>Super Admin</b> (Owner)    full access · user management · all reports · settings
+      │       <b>Coordinator</b> (Admin)    team monitoring · approvals · lead allocation · process tracking
+      │       <b>Delivery Team</b> (Admin)  order management · delivery tracking · transport · updates
+      │       <b>Store Team</b> (Admin)     stock · material inward/outward · inventory · stock reports
+      │       <b>Accounts Team</b> (Admin)  invoicing · payment tracking · subsidy settlement · reports
       │
-      └── <b>STAFF</b>  - day to day work
-              Telecaller / Sales        creates and follows up leads
-              Department Coordinator    files with one department</div>
+      └── <b>MOBILE APP</b>  Android / iOS · field operations teams
+              <b>Telecaller / Sales</b>        create leads · upload documents · follow up · update status
+              <b>Field Sales Staff</b>         farmer visits · collect documents · product demo · close sales
+              <b>Department Coordinator</b>    verify documents · scheme process · approval · support till order
+              <b>Delivery Staff</b>            view orders · delivery update · customer confirmation · proof
+              <b>Service Staff</b>             warranty tracking · service calls · spare parts · service closure</div>
 
-  <p>Admin can approve and edit inside their own area. Staff can only create and update their own work. Staff cannot approve their own file, and cannot see the whole pipeline.</p>
+  <p>The five portal roles are Super Admin and four Admins, each running one area. The five mobile roles do the day to day work and only see their own. Staff cannot approve their own file and cannot see the whole pipeline.</p>
+
+  <p>Note that <strong>Delivery</strong> appears on both sides. The Delivery Team plans and tracks from the portal; the Delivery Staff carry the machine and confirm it on the phone. Same for service and store - the office plans, the field records.</p>
 </section>
 
 <!-- 7 -->
 <section id="screens">
-  <h2><span class="num">07</span>Screens</h2>
+  <h2><span class="num">08</span>Screens</h2>
 
   <p>All the screens are on a separate page. They are boxes and captions only - what goes where, nothing about colours or the final look.</p>
 
   <a class="bigl" href="wireframes.html">
     <span class="bigl-k">Open</span>
     <span class="bigl-t">The screen wireframes</span>
-    <span class="bigl-s">Field screens, document reading, office screens</span>
+    <span class="bigl-s">Mobile field screens, document reading, web portal screens</span>
     <span class="bigl-a">&#8594;</span>
   </a>
 </section>
 
 <!-- 8 -->
 <section id="order">
-  <h2><span class="num">08</span>Build order</h2>
+  <h2><span class="num">09</span>Build order</h2>
 
   <div class="card">
     <h4>Phase 1</h4>
-    <p style="margin:0">Login and roles. Lead form. All nine documents with reading. The check report. Works offline.</p>
+    <p style="margin:0">Login and the ten roles. Mobile app: the eight step lead form, all nine documents with reading, the check report, works offline. Web portal: dashboard, leads and farmers.</p>
   </div>
   <div class="card">
     <h4>Phase 2</h4>
-    <p style="margin:0">Approval queue. Department filing. Stock. Delivery and proof. Warranty and service.</p>
+    <p style="margin:0">Approval queue and lead allocation. Department filing. Stock with inward and outward. Delivery and proof. Warranty, service and spare parts.</p>
   </div>
   <div class="card">
     <h4>Phase 3</h4>
-    <p style="margin:0">Invoice, payment and subsidy claim. Owner dashboard. Reports and exports.</p>
+    <p style="margin:0">Invoice, payment and subsidy settlement. Full portal dashboard and charts. Reports and exports.</p>
   </div>
   <div class="card">
     <h4>Phase 4</h4>
@@ -436,84 +498,51 @@ footer{border-top:1px solid var(--line);padding:30px 0 60px;font:12px var(--mono
 
   <div class="note">
     <b>No timeline yet</b>
-    <p>Cost and dates come after the questions below are answered. A few of them change the size of the work a lot.</p>
+    <p>Cost and dates come after the questions below are answered. Question 01 in particular changes the size of the work a lot.</p>
   </div>
 </section>
 
 <!-- 9 -->
 <section id="questions">
-  <h2><span class="num">09</span>Questions for SKR</h2>
+  <h2><span class="num">10</span>Questions for SKR</h2>
 
-  <p>We had to guess these. Please correct anything wrong.</p>
+  <p>Only the ones we need before we can start. Everything else we will work out as we go and ask when that part of the build comes up.</p>
+
+  <p>Your diagram already settled three big ones: the name is <strong>SKR Trader</strong>, there are two platforms - a web portal and a mobile app - and there are ten roles.</p>
 
   <div class="qgroup">
-    <h3>First</h3>
-    <div class="q" data-n="01">Is the name <strong>SKR Trader</strong> or <strong>SRK Trader</strong>? Both are being used right now.</div>
+    <h3>The one that decides the size of the job</h3>
+    <div class="q" data-n="01">Does the app handle the <strong>department filing</strong> - grouping approved files into a lot, sending them to AED, Agri or Horti, and tracking sanctioned or rejected? Your status timeline goes straight from "documents verified" to "product confirmed", so that step is either done outside the app or it was just left off the drawing. Everything else in this list is small next to this one.</div>
   </div>
 
   <div class="qgroup">
-    <h3>Registration ID and government portals</h3>
-    <div class="q" data-n="02">Where does the farmer's registration ID come from? Does the farmer already have one, or does SKR make it?</div>
-    <div class="q" data-n="03">Can SKR look up a farmer's details using that ID? On which portal?</div>
-    <div class="q" data-n="04">What do you do today when a farmer has no registration ID?</div>
-    <div class="q" data-n="05">On e-Sevai, is everything typed by hand? Would an export in the right order save time?</div>
-    <div class="q" data-n="06">How many files come back rejected in a year, and what are the top three reasons?</div>
-    <div class="q" data-n="07">Do you have a list of villages that are written in two different ways?</div>
+    <h3>What we need to build the forms</h3>
+    <div class="q" data-n="02">Is <strong>SMAM</strong> the only scheme, or are AED, Agri and Horti separate schemes alongside it?</div>
+    <div class="q" data-n="03">The <strong>product list</strong> - category, brand, model, price and subsidy percentage. Your chart shows Power Weeder, Power Tiller, Paddy Transplanter and Agri Implements. Is that the whole catalogue or the top four?</div>
+    <div class="q" data-n="04">Is the machine delivered <strong>before</strong> or <strong>after</strong> the subsidy is sanctioned? This sets the order of the stages on the lead status screen.</div>
+    <div class="q" data-n="05">Your attachment screen shows five slots - farmer photo, Aadhaar, Patta, community certificate, other. Is that the real list, or do Adangal, RC book, passbook and farmer registration need their own slots too?</div>
+    <div class="q" data-n="06">How should <strong>Aadhaar</strong> be stored - the full number, a masked number, or only the card photo until the file closes? There are legal rules on this in India, so we need it settled before we write the database, not after.</div>
   </div>
 
   <div class="qgroup">
-    <h3>Scheme and departments</h3>
-    <div class="q" data-n="08">In your notes, under AED it says "1 to 7". What are 1 to 7?</div>
-    <div class="q" data-n="09">What does the circled <strong>6 (Lot)</strong> mean? Are files sent in lots of six?</div>
-    <div class="q" data-n="10">What are the circled <strong>8</strong>, <strong>22</strong> and <strong>32</strong>?</div>
-    <div class="q" data-n="11">Is there a quota per department per season that the app should count down?</div>
-    <div class="q" data-n="12">Do files go one by one, or as a batch under one reference number?</div>
-    <div class="q" data-n="13">What statuses does an application go through, in the department's own words?</div>
-    <div class="q" data-n="14">Can we have the approved product and brand list for AED, Agri and Horti, with the subsidy percentages?</div>
-    <div class="q" data-n="15">Horti is August to March. What are the windows for AED and Agri?</div>
+    <h3>Stock and money</h3>
+    <div class="q" data-n="07">Is stock tracked <strong>machine by machine</strong> with a serial, chassis and engine number, or only as a count per product? And do spare parts need their own stock, separate from machines?</div>
+    <div class="q" data-n="08">Does the <strong>app make the invoice</strong>, or does that stay in Tally? Your diagram puts invoicing and billing with the Accounts Team in the portal, so we have assumed the app - please confirm.</div>
   </div>
 
   <div class="qgroup">
-    <h3>How the work runs</h3>
-    <div class="q" data-n="16">Do you deliver the machine <strong>before</strong> or <strong>after</strong> the department sanctions the subsidy?</div>
-    <div class="q" data-n="17">Can a file be cancelled after stock is allocated? Who can do that?</div>
-    <div class="q" data-n="18">How many leads come in a month, and how many close?</div>
-    <div class="q" data-n="19">Do staff get any incentive per closed file?</div>
-    <div class="q" data-n="20">Who are the service engineers? Do they need their own login?</div>
+    <h3>Accounts and setup</h3>
+    <div class="q" data-n="09">One branch or several? Should staff see only their own branch? (The home screen shows Tirunelveli - is that the branch or the area covered?)</div>
+    <div class="q" data-n="10">Can one person hold <strong>two roles</strong>? Your diagram has a Delivery Team in the portal and Delivery Staff on the phone - two different people, or the same person on two devices?</div>
+    <div class="q" data-n="11">Who does a new lead belong to before the Coordinator allocates it - the person who created it, or a common pool?</div>
+    <div class="q" data-n="12">Tamil, English, or both with a switch?</div>
+    <div class="q" data-n="13">Is there existing data to bring in on day one - a farmer sheet, current stock?</div>
+    <div class="q" data-n="14">Is there a date the first version has to be ready by?</div>
   </div>
 
-  <div class="qgroup">
-    <h3>Documents</h3>
-    <div class="q" data-n="21">Is the vehicle age limit exactly ten years, counted from the registration date?</div>
-    <div class="q" data-n="22">How should Aadhaar be stored - full number, masked number, or only the photo until the file closes?</div>
-    <div class="q" data-n="23">Does the document list change by department, by community, or by product?</div>
-    <div class="q" data-n="24">How old can an SMF certificate be before it cannot be used?</div>
-    <div class="q" data-n="25">If all checks pass, can the app approve on its own, or must a coordinator always approve?</div>
-    <div class="q" data-n="26">How much difference in land extent is acceptable before it is a real problem?</div>
-    <div class="q" data-n="27">How long should document photos be kept after a file closes?</div>
-  </div>
-
-  <div class="qgroup">
-    <h3>Stock, delivery and money</h3>
-    <div class="q" data-n="28">Is stock tracked machine by machine with a serial number, or only as a count?</div>
-    <div class="q" data-n="29">Should the app make the invoice, or does that stay in Tally?</div>
-    <div class="q" data-n="30">If you use Tally, should the app send data into it?</div>
-    <div class="q" data-n="31">Does the farmer pay in instalments?</div>
-    <div class="q" data-n="32">What proof does a delivery need - photo, signature, GPS, or all three?</div>
-  </div>
-
-  <div class="qgroup">
-    <h3>Practical</h3>
-    <div class="q" data-n="33">How many people will use the app, and how do they split across the roles?</div>
-    <div class="q" data-n="34">One branch or many? Should staff see only their own branch?</div>
-    <div class="q" data-n="35">Can one person have two roles - store and delivery, for example?</div>
-    <div class="q" data-n="36">Android only, or iPhone too? Does anyone need a laptop version?</div>
-    <div class="q" data-n="37">How bad is the network in the villages? How much must work offline?</div>
-    <div class="q" data-n="38">Tamil, English, or both with a switch?</div>
-    <div class="q" data-n="39">Should farmers get a message when their file is sanctioned or delivery is fixed?</div>
-    <div class="q" data-n="40">Is there old data - a farmer sheet, current stock - to bring in on day one?</div>
-    <div class="q" data-n="41">Which reports do you make today, and in what format?</div>
-    <div class="q" data-n="42">Is there a date the first version has to be ready by?</div>
+  <div class="note">
+    <b>Parked until the right time</b>
+    <p>We also have questions on the registration ID and e-Sevai, the department lot numbers and quotas, certificate validity and the vehicle age limit, rejection reasons and village name spellings, staff head count, reports, SMS to farmers, and how much has to work offline. None of them stop us starting. We will bring each one up when we reach that part of the build, so you are not answering forty things at once.</p>
   </div>
 </section>
 
